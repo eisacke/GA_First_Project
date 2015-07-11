@@ -17,3 +17,24 @@
 // If total hangman is drawn - game over - restart
 // Player 1 or player 2 score taken (this might be complicated, with player 1/2 toggle)
 // Back to menu page
+
+$(document).ready(function(){
+	Hangman.setup();
+})
+
+var Hangman = Hangman || {};
+
+Hangman.setup = function(){
+	var $enterWord = $('#enterWord');
+	var $randomGenerate = $('#randomGenerate');
+	var $popUp1Div = $('#popUp1');
+	var $popUp2Div = $('#popUp2');
+	$enterWord.on("click", function(){
+		$popUp1Div.hide();
+		$popUp2Div.toggle();
+	});
+
+}
+
+
+

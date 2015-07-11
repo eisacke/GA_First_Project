@@ -1,3 +1,23 @@
-h1 {
+body {
 	font-family: monospace;
+	background: pink;
 }
+
+#popUp1, #popUp2 {
+	background: orange;
+	height: 70px;
+	width: 270px;
+	margin: 10px auto;
+	padding: 20px;
+	text-align: center;
+	position: relative;
+}
+
+#popUp2 {
+	display: none;
+}
+
+.popUp1 {
+margin: 10px;
+}
+
