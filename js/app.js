@@ -35,17 +35,19 @@ Hangman.setup = function(){
 
 Hangman.enterWord = function(){
 	// First pop up vanishes and second appears
-	var $popUp1Div = $('#popUp1');
-	var $popUp2Div = $('#popUp2');
+	Hangman.popUp1Div = $('#popUp1');
+	Hangman.popUp2Div = $('#popUp2');
 	Hangman.popUp3Div = $('#popUp3');
+	Hangman.popUp4Div = $('#popUp4');
+
 	var $submitButton = $('#enterWordSubmit');
-	$popUp1Div.hide();
-	$popUp2Div.show();
+	Hangman.popUp1Div.hide();
+	Hangman.popUp2Div.show();
 	// User chosen word is stored in a variable and second pop up vanishes
 	$submitButton.on("click", function(){
 		Hangman.input = $('#enterWordInput').val().toLowerCase().replace(/ /g, '-');
 		console.log(Hangman.input);
-		$popUp2Div.hide();
+		Hangman.popUp2Div.hide();
 		Hangman.popUp3Div.show();
 		Hangman.startGame();
 	});
@@ -53,15 +55,32 @@ Hangman.enterWord = function(){
 //Third and final pop is dismissed and game page is loaded
 Hangman.startGame = function(){
 	var $startGame = $('#startGame');
+	var $gameWrapper = $('#gameWrapper');
 	$startGame.on("click", function(){
 		Hangman.popUp3Div.hide();
+		$gameWrapper.show();
 		var inputArray = Hangman.input.split('');
 		console.log(inputArray);
 	});
 }
 
 Hangman.generateWord = function(){
-	alert("Randomly Generated Word!")
+	Hangman.popUp1Div = $('#popUp1');
+	Hangman.popUp2Div = $('#popUp2');
+	Hangman.popUp3Div = $('#popUp3');
+	Hangman.popUp4Div = $('#popUp4');
+	Hangman.popUp1Div.hide();
+	Hangman.popUp4Div.show();
+
+	var $randomGenerateSubmit = $('#randomGenerateSubmit');
+	$randomGenerateSubmit.on("click", function(){
+		Hangman.category = $('#selectOption').val();
+		console.log(Hangman.category);
+	});
+	var citiesArray = ['London', 'Paris', 'Barcelona'];
+	var coloursArray = ['Pink', 'Purple', 'Orange'];
+	var animalsArray = ['Tiger', 'Monkey', 'Penguin'];
+	var rand = citiesArray[Math.floor(Math.random() * citiesArray.length)];
 }
 
 

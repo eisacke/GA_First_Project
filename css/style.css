@@ -3,7 +3,11 @@ body {
 	background: pink;
 }
 
-#popUp1, #popUp2, #popUp3 {
+h1 {
+	font-size: 70px;
+}
+
+#popUp1, #popUp2, #popUp3, #popUp4 {
 	background: orange;
 	height: 70px;
 	width: 270px;
@@ -13,11 +17,18 @@ body {
 	position: relative;
 }
 
-#popUp2, #popUp3 {
+#popUp2, #popUp3, #popUp4 {
 	display: none;
 }
 
-.popUp1, .popUp2, .popUp3 {
+.popUp1, .popUp2, .popUp3, .popUp4 {
 margin: 10px;
+}
+
+#gameWrapper {
+	display: none;
+	margin: 10px auto;
+	height: 200px;
+	width: 200px;
 }
 
