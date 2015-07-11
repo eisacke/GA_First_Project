@@ -43,8 +43,8 @@ Hangman.enterWord = function(){
 	$popUp2Div.show();
 	// User chosen word is stored in a variable and second pop up vanishes
 	$submitButton.on("click", function(){
-		var $input = $('#enterWordInput').val();
-		console.log($input);
+		Hangman.input = $('#enterWordInput').val().toLowerCase().replace(/ /g, '-');
+		console.log(Hangman.input);
 		$popUp2Div.hide();
 		Hangman.popUp3Div.show();
 		Hangman.startGame();
@@ -55,6 +55,8 @@ Hangman.startGame = function(){
 	var $startGame = $('#startGame');
 	$startGame.on("click", function(){
 		Hangman.popUp3Div.hide();
+		var inputArray = Hangman.input.split('');
+		console.log(inputArray);
 	});
 }
 
