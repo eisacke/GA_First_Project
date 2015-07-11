@@ -27,14 +27,26 @@ var Hangman = Hangman || {};
 Hangman.setup = function(){
 	var $enterWord = $('#enterWord');
 	var $randomGenerate = $('#randomGenerate');
-	var $popUp1Div = $('#popUp1');
-	var $popUp2Div = $('#popUp2');
-	$enterWord.on("click", function(){
-		$popUp1Div.hide();
-		$popUp2Div.toggle();
-	});
-
+	$enterWord.on("click", Hangman.enterWord);
+	$randomGenerate.on("click", Hangman.generateWord);
 }
 
+Hangman.enterWord = function(){
+	// First pop up vanishes and second appears
+	var $popUp1Div = $('#popUp1');
+	var $popUp2Div = $('#popUp2');
+	$popUp1Div.hide();
+	$popUp2Div.toggle();
+	// User chosen word is stored in a variable
+	Hangman.submitButton = $('#enterWordSubmit');
+	Hangman.submitButton.on("click", function(){
+		Hangman.input = $('#enterWordInput').val();
+		console.log(Hangman.input);
+	});
+}
+
+Hangman.generateWord = function(){
+	alert("Randomly Generated Word!")
+}
 
 
