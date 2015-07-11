@@ -24,6 +24,8 @@ $(document).ready(function(){
 
 var Hangman = Hangman || {};
 
+//Global variables
+
 Hangman.setup = function(){
 	var $enterWord = $('#enterWord');
 	var $randomGenerate = $('#randomGenerate');
@@ -35,13 +37,24 @@ Hangman.enterWord = function(){
 	// First pop up vanishes and second appears
 	var $popUp1Div = $('#popUp1');
 	var $popUp2Div = $('#popUp2');
+	Hangman.popUp3Div = $('#popUp3');
+	var $submitButton = $('#enterWordSubmit');
 	$popUp1Div.hide();
-	$popUp2Div.toggle();
-	// User chosen word is stored in a variable
-	Hangman.submitButton = $('#enterWordSubmit');
-	Hangman.submitButton.on("click", function(){
-		Hangman.input = $('#enterWordInput').val();
-		console.log(Hangman.input);
+	$popUp2Div.show();
+	// User chosen word is stored in a variable and second pop up vanishes
+	$submitButton.on("click", function(){
+		var $input = $('#enterWordInput').val();
+		console.log($input);
+		$popUp2Div.hide();
+		Hangman.popUp3Div.show();
+		Hangman.startGame();
+	});
+}
+//Third and final pop is dismissed and game page is loaded
+Hangman.startGame = function(){
+	var $startGame = $('#startGame');
+	$startGame.on("click", function(){
+		Hangman.popUp3Div.hide();
 	});
 }
 

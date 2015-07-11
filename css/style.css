@@ -3,7 +3,7 @@ body {
 	background: pink;
 }
 
-#popUp1, #popUp2 {
+#popUp1, #popUp2, #popUp3 {
 	background: orange;
 	height: 70px;
 	width: 270px;
@@ -13,11 +13,11 @@ body {
 	position: relative;
 }
 
-#popUp2 {
+#popUp2, #popUp3 {
 	display: none;
 }
 
-.popUp1, .popUp2 {
+.popUp1, .popUp2, .popUp3 {
 margin: 10px;
 }
 
