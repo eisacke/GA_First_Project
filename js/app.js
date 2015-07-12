@@ -47,6 +47,7 @@ Hangman.enterWord = function(){
 		Hangman.popUp2Div.hide();
 		Hangman.popUp3Div.show();
 		Hangman.startGame();
+		Hangman.initializeBoard();
 	});
 }
 
@@ -96,16 +97,25 @@ Hangman.generateWord = function(){
 	});
 }
 
-// Generates the letters in the DOM
+// Generates the a-z buttons in the DOM
 Hangman.initializeBoard = function(){
 	var letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
 	for(var i=0; i<letters.length;i++){
-		var letterSeed = $('<input/>').attr({type: 'button', class:'letters', value:letters[i]});
-		$("#letterSeed").append(letterSeed);
+		var $letterSeed = $('<input/>').attr({type: 'button', class:'letters', value:letters[i]});
+		$("#letterSeed").append($letterSeed);
 	}
-
+	Hangman.bindEvents();
+	// Shows the word (for now)
 	var $chosenWord = $('#chosenWord');
 	$chosenWord.html(Hangman.input);
+}
+
+// Adds event listeners to the a-z buttons
+Hangman.bindEvents = function(){
+	var $letterClick = $('.letters');
+	$letterClick.on("click", function(){
+		alert($(this).val());
+	})
 }
 
 

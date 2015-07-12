@@ -47,5 +47,10 @@ margin: 10px;
 	width: 35px;
 	border: 2px solid black;
 	margin: 5px;
+	outline: 0;
+}
+
+.letters:hover {
+	border: 2px solid cyan;
 }
 
