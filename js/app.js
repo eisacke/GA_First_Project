@@ -58,8 +58,8 @@ Hangman.startGame = function(){
 	$startGame.on("click", function(){
 		Hangman.popUp3Div.hide();
 		$gameWrapper.show();
-		var inputArray = Hangman.input.split('');
-		console.log(inputArray);
+		Hangman.inputArray = Hangman.input.split('');
+		console.log(Hangman.inputArray);
 	});
 }
 
@@ -99,11 +99,13 @@ Hangman.generateWord = function(){
 
 // Generates the a-z buttons in the DOM
 Hangman.initializeBoard = function(){
-	var letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
-	for(var i=0; i<letters.length;i++){
-		var $letterSeed = $('<input/>').attr({type: 'button', class:'letters', value:letters[i]});
+	Hangman.letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
+	
+	$.each(Hangman.letters, function(index, value){
+		var $letterSeed = $('<input/>').attr({type: 'button', class:'letters', value:value});
 		$("#letterSeed").append($letterSeed);
-	}
+	});
+
 	Hangman.bindEvents();
 	// Shows the word (for now)
 	var $chosenWord = $('#chosenWord');
@@ -114,8 +116,12 @@ Hangman.initializeBoard = function(){
 Hangman.bindEvents = function(){
 	var $letterClick = $('.letters');
 	$letterClick.on("click", function(){
-		alert($(this).val());
-	})
+		if($.inArray($(this).val(), Hangman.inputArray) > -1){
+			$(this).hide();
+		} else{
+			$(this).css("background-color", "red");
+		}
+	});
 }
 
 
