@@ -48,6 +48,7 @@ Hangman.enterWord = function(){
 		Hangman.popUp3Div.show();
 		Hangman.startGame();
 		Hangman.initializeBoard();
+		Hangman.initializeWord();
 	});
 }
 
@@ -94,6 +95,7 @@ Hangman.generateWord = function(){
 		Hangman.popUp4Div.hide();
 		Hangman.startGame();
 		Hangman.initializeBoard();
+		Hangman.initializeWord();
 	});
 }
 
@@ -102,14 +104,18 @@ Hangman.initializeBoard = function(){
 	Hangman.letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
 	
 	$.each(Hangman.letters, function(index, value){
-		var $letterSeed = $('<input/>').attr({type: 'button', class:'letters', value:value});
+		var $letterSeed = $('<input/>').attr({type:'button', class:'letters', value:value});
 		$("#letterSeed").append($letterSeed);
 	});
-
 	Hangman.bindEvents();
-	// Shows the word (for now)
-	var $chosenWord = $('#chosenWord');
-	$chosenWord.html(Hangman.input);
+}
+
+Hangman.initializeWord = function(){
+	Hangman.inputArray = Hangman.input.split(''); // Figure out why I have to re-declare this var
+	$.each(Hangman.inputArray, function(index, value){
+		var $wordSeed = $('<div/>').attr({type:'button', class:'word', value:value});
+		$("#wordSeed").append($wordSeed);
+	});
 }
 
 // Adds event listeners to the a-z buttons
@@ -117,7 +123,7 @@ Hangman.bindEvents = function(){
 	var $letterClick = $('.letters');
 	$letterClick.on("click", function(){
 		if($.inArray($(this).val(), Hangman.inputArray) > -1){
-			$(this).hide();
+			$(this).css("background-color", "green");
 		} else{
 			$(this).css("background-color", "red");
 		}
