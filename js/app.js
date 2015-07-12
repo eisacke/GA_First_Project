@@ -97,18 +97,15 @@ Hangman.generateWord = function(){
 }
 
 // Generates the letters in the DOM
-// Need to conver to jQuery
 Hangman.initializeBoard = function(){
-	var letterSeed=document.getElementById("letterSeed");
 	var letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
 	for(var i=0; i<letters.length;i++){
-		var newLetter=document.createElement("input");
-		newLetter.type="button";
-		letterSeed.appendChild(newLetter);
-		newLetter.value=letters[i];
-		newLetter.id=letters[i];
-		newLetter.className="buttons";
-	};
+		var letterSeed = $('<input/>').attr({type: 'button', class:'letters', value:letters[i]});
+		$("#letterSeed").append(letterSeed);
+	}
+
+	var $chosenWord = $('#chosenWord');
+	$chosenWord.html(Hangman.input);
 }
 
 
