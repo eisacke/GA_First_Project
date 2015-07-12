@@ -46,7 +46,6 @@ Hangman.enterWord = function(){
 	// User chosen word is stored in a variable and second pop up vanishes
 	$submitButton.on("click", function(){
 		Hangman.input = $('#enterWordInput').val().toLowerCase().replace(/ /g, '-');
-		console.log(Hangman.input);
 		Hangman.popUp2Div.hide();
 		Hangman.popUp3Div.show();
 		Hangman.startGame();
@@ -74,13 +73,26 @@ Hangman.generateWord = function(){
 
 	var $randomGenerateSubmit = $('#randomGenerateSubmit');
 	$randomGenerateSubmit.on("click", function(){
-		Hangman.category = $('#selectOption').val();
-		console.log(Hangman.category);
+		var $selectOption = $('#selectOption').val();
+		var citiesArray = ['london', 'paris', 'barcelona'];
+		var coloursArray = ['pink', 'purple', 'orange'];
+		var animalsArray = ['tiger', 'monkey', 'penguin'];
+
+		switch ($selectOption) {
+			case "cities":
+			Hangman.input = citiesArray[Math.floor(Math.random() * citiesArray.length)];
+			break;
+			case "colours":
+			Hangman.input = coloursArray[Math.floor(Math.random() * coloursArray.length)];
+			break;
+			case "animals":
+			Hangman.input = animalsArray[Math.floor(Math.random() * animalsArray.length)];
+			break;
+		}
+		Hangman.popUp3Div.show();
+		Hangman.popUp4Div.hide();
+		Hangman.startGame();
 	});
-	var citiesArray = ['London', 'Paris', 'Barcelona'];
-	var coloursArray = ['Pink', 'Purple', 'Orange'];
-	var animalsArray = ['Tiger', 'Monkey', 'Penguin'];
-	var rand = citiesArray[Math.floor(Math.random() * citiesArray.length)];
 }
 
 
