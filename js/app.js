@@ -24,8 +24,6 @@ $(document).ready(function(){
 
 var Hangman = Hangman || {};
 
-//Global variables
-
 Hangman.setup = function(){
 	var $enterWord = $('#enterWord');
 	var $randomGenerate = $('#randomGenerate');
@@ -51,6 +49,7 @@ Hangman.enterWord = function(){
 		Hangman.startGame();
 	});
 }
+
 //Third and final pop is dismissed and game page is loaded
 Hangman.startGame = function(){
 	var $startGame = $('#startGame');
@@ -63,6 +62,7 @@ Hangman.startGame = function(){
 	});
 }
 
+// Generates a random word from an array on click of submit
 Hangman.generateWord = function(){
 	Hangman.popUp1Div = $('#popUp1');
 	Hangman.popUp2Div = $('#popUp2');
@@ -92,7 +92,23 @@ Hangman.generateWord = function(){
 		Hangman.popUp3Div.show();
 		Hangman.popUp4Div.hide();
 		Hangman.startGame();
+		Hangman.initializeBoard();
 	});
+}
+
+// Generates the letters in the DOM
+// Need to conver to jQuery
+Hangman.initializeBoard = function(){
+	var letterSeed=document.getElementById("letterSeed");
+	var letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
+	for(var i=0; i<letters.length;i++){
+		var newLetter=document.createElement("input");
+		newLetter.type="button";
+		letterSeed.appendChild(newLetter);
+		newLetter.value=letters[i];
+		newLetter.id=letters[i];
+		newLetter.className="buttons";
+	};
 }
 
 
