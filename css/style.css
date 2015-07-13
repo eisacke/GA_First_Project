@@ -16,7 +16,7 @@ h2 {
 }
 
 #popUp1, #popUp2, #popUp3, #popUp4 {
-	background: white;
+	background: whitesmoke;
 	border: 2px solid black;
 	width: 340px;
 	margin: 100px auto;
@@ -25,7 +25,7 @@ h2 {
 }
 
 #popUp5 {
-	background: white;
+	background: whitesmoke;
 	border: 2px solid black;
 	width: 340px;
 	margin: 40px auto;

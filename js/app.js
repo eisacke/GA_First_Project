@@ -105,7 +105,7 @@ Hangman.generateWord = function(){
 Hangman.initializeBoard = function(){
 	Hangman.letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
 	$.each(Hangman.letters, function(index, value){
-		var $letterSeed = $('<input/>').attr({type:'button', class:'letters', value:value}).addClass("animated infinite pulse");
+		var $letterSeed = $('<input/>').attr({type:'button', class:'letters', value:value}).addClass("animated zoomIn");
 		$("#letterSeed").append($letterSeed);
 	});
 	Hangman.playGame();
@@ -114,7 +114,7 @@ Hangman.initializeBoard = function(){
 Hangman.initializeWord = function(){
 	Hangman.inputArray = Hangman.input.split(''); // Figure out why I have to re-declare this var
 	$.each(Hangman.inputArray, function(index, value){
-		var $wordSeed = $('<div/>').attr({class:'word', value:value, name:value})
+		var $wordSeed = $('<div/>').attr({class:'word', value:value, name:value});
 		$("#wordSeed").append($wordSeed);
 		$(".word[name='/']").html('/').addClass('full');
 		$(".word[name='-']").html('-').addClass('full');
@@ -131,11 +131,27 @@ Hangman.playGame = function(){
 				$(this).css("background-color", "rgb(155, 235, 31)");
 				var $selectLetter = $(".word[name='" + $(this).val() + "']");			
 				$selectLetter.html($(this).val()).addClass("full");
+
+				var sound = soundManager.createSound({ 
+				  id: 'sound_coin', 
+				  url: '/sounds/coin.mp3', 
+				  volume: 50, 
+				  autoPlay: true 
+				}).play();
+
 				Hangman.checkForWinner();
 			} else {
 				$(this).css("background-color", "rgb(255, 29, 74)");
 				Hangman.guessCounter++;
 				Hangman.changeImage();
+
+				var sound = soundManager.createSound({ 
+				  id: 'sound_fail', 
+				  url: '/sounds/fail.mp3', 
+				  volume: 50, 
+				  autoPlay: true 
+				}).play();
+
 			}
 		} else {
 			Hangman.winOrLose.html("Game over!");
@@ -177,6 +193,14 @@ Hangman.checkForWinner = function(){
 	if ($(".word.full").length == $(".word").length) {
 		Hangman.winOrLose.html("Congratulations! You won!");
 		Hangman.popUp5Div.show();
+
+		var sound = soundManager.createSound({ 
+		  id: 'sound_win', 
+		  url: '/sounds/win.mp3', 
+		  volume: 50, 
+		  autoPlay: true 
+		}).play();
+
 		var $playAgain = $('#playAgain');
 		$playAgain.on("click", function(){
 			location.reload(); // Hassan told me to do this
