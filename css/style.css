@@ -29,7 +29,7 @@ margin: 10px;
 
 #gameWrapper {
 	display: none;
-	margin: 10px auto;
+	margin: 20px auto;
 	height: 200px;
 	width: 600px;
 }
@@ -55,14 +55,13 @@ margin: 10px;
 }
 
 .word {
-	background-color: white;
+	background-color: pink;
 	font-family: monospace;
-	font-size: 16px;
-	height: 35px;
+	font-size: 24px;
+	height: 30px;
 	width: 35px;
 	border-bottom: 2px solid black;
 	margin: 20px 5px;
 	outline: 0;
 	display: inline-block;
 }
-
