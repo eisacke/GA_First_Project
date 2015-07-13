@@ -32,13 +32,13 @@ Hangman.setup = function(){
 }
 
 Hangman.enterWord = function(){
-	// First pop up vanishes and second appears
+	// Define pop-ups
 	Hangman.popUp1Div = $('#popUp1');
 	Hangman.popUp2Div = $('#popUp2');
 	Hangman.popUp3Div = $('#popUp3');
 	Hangman.popUp4Div = $('#popUp4');
-
 	var $submitButton = $('#enterWordSubmit');
+	// Hide first pop-up and reveal second
 	Hangman.popUp1Div.hide();
 	Hangman.popUp2Div.show();
 	// User chosen word is stored in a variable and second pop up vanishes
@@ -55,10 +55,10 @@ Hangman.enterWord = function(){
 //Third and final pop is dismissed and game page is loaded
 Hangman.startGame = function(){
 	var $startGame = $('#startGame');
-	var $gameWrapper = $('#gameWrapper');
+	Hangman.gameWrapper = $('#gameWrapper');
 	$startGame.on("click", function(){
 		Hangman.popUp3Div.hide();
-		$gameWrapper.show();
+		Hangman.gameWrapper.show();
 		Hangman.inputArray = Hangman.input.split('');
 		console.log(Hangman.inputArray);
 	});
@@ -102,7 +102,6 @@ Hangman.generateWord = function(){
 // Generates the a-z buttons in the DOM
 Hangman.initializeBoard = function(){
 	Hangman.letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
-	
 	$.each(Hangman.letters, function(index, value){
 		var $letterSeed = $('<input/>').attr({type:'button', class:'letters', value:value});
 		$("#letterSeed").append($letterSeed);
@@ -123,16 +122,15 @@ Hangman.initializeWord = function(){
 Hangman.playGame = function(){
 	Hangman.guessCounter = 0;
 	var $letterClick = $('.letters');
-	
 	$letterClick.on("click", function(){
 		if (Hangman.guessCounter < 6){
 			if($.inArray($(this).val(), Hangman.inputArray) > -1){
-				$(this).css("background-color", "green");
+				$(this).css("background-color", "rgb(155, 235, 31)");
 				var $selectLetter = $(".word[name='" + $(this).val() + "']");			
 				$selectLetter.html($(this).val()).addClass("full");
 				Hangman.checkForWinner();
 			} else {
-				$(this).css("background-color", "red");
+				$(this).css("background-color", "rgb(255, 29, 74)");
 				Hangman.guessCounter++;
 				Hangman.changeImage();
 			}
@@ -170,8 +168,24 @@ Hangman.changeImage = function(){
 // Checks to see if .word divs have a class of 'full' - if yes then declare winner
 Hangman.checkForWinner = function(){
 	if ($(".word.full").length == $(".word").length) {
-		var $gameStatus = $('#gameStatus');
-		$gameStatus.html("You won!");
+		Hangman.popUp5Div = $('#popUp5');
+		Hangman.popUp5Div.show();
+		
+		var $playAgain = $('#playAgain');
+		$playAgain.on("click", function(){
+			alert("Reset");
+			Hangman.resetGame();
+		})
 	} 
+}
+
+Hangman.resetGame = function(){
+	Hangman.popUp1Div.show();
+	Hangman.popUp2Div.hide();
+	Hangman.popUp3Div.hide();
+	Hangman.popUp4Div.hide();
+	Hangman.popUp5Div.hide();
+	Hangman.gameWrapper.hide();
+	Hangman.setup();
 }
 

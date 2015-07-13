@@ -1,52 +1,71 @@
 body {
 	font-family: 'Arvo', serif;
-	background: white;
+	background-color: white;
 	text-align: center;
 }
 
 h1 {
 	text-align: center;
-	font-size: 60px;
+	margin-bottom: 40px;
+	font-size: 40px;
+}
+
+h2 {
+	font-size: 24px;
+	margin-bottom: 10px;
 }
 
 #popUp1, #popUp2, #popUp3, #popUp4 {
-	background: orange;
-	height: 90px;
-	width: 330px;
-	margin: 10px auto;
+	background: aliceblue;
+	border: 2px solid black;
+	width: 340px;
+	margin: 100px auto;
 	padding: 20px;
 	text-align: center;
-	position: relative;
 }
 
-#popUp2, #popUp3, #popUp4 {
+#popUp5 {
+	background: aliceblue;
+	border: 2px solid black;
+	width: 340px;
+	margin: 40px auto;
+	padding: 20px;
+	text-align: center;
+}
+
+#popUp2, #popUp3, #popUp4, #popUp5 {
 	display: none;
 }
 
-.popUp1, .popUp2, .popUp3, .popUp4, #selectOption {
-	margin: 10px;
+.popUp1, .popUp2, .popUp3, .popUp4, .popUp5, #selectOption {
+	margin: 10px 5px 0px 5px;
 	font-family: 'Arvo', serif;
 	font-size: 15px;
 	background-color: white;
-	border: 1px solid black;
+	border: 2px solid black;
 	padding: 5px;
 }
 
+button:hover {
+	border: 2px solid grey;
+}
+
 #selectOption {
-	height: 32px;
+	height: 31px;
 }
 
 #gameWrapper {
 	display: none;
-	margin: 50px auto;
+	margin: 100px auto;
 	height: 200px;
-	width: 800px;
+	width: 960px;
 }
 
 #gameBoard {
 	float: left;
 	display: inline-block;
-	width: 600px;
+	min-width: 700px;
+	max-width: 790px;
 }
 
 .letters {
@@ -65,7 +84,8 @@ h1 {
 }
 
 #letterSeed {
-	margin-top: 20px;
+	margin: 20px auto;
+	width: 585px;
 }
 
 .letters:hover {
@@ -93,7 +113,7 @@ div[value='/'] {
 	font-size: 40px;
 }
 
-#guessCounter {
+#playerTurn {
 	margin: 20px auto;
 	font-size: 18px;
 }
