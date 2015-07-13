@@ -1,18 +1,18 @@
 body {
-	font-family: monospace;
-	background: pink;
+	font-family: 'Arvo', serif;
+	background: white;
 	text-align: center;
 }
 
 h1 {
 	text-align: center;
-	font-size: 70px;
+	font-size: 60px;
 }
 
 #popUp1, #popUp2, #popUp3, #popUp4 {
 	background: orange;
-	height: 70px;
-	width: 270px;
+	height: 90px;
+	width: 330px;
 	margin: 10px auto;
 	padding: 20px;
 	text-align: center;
@@ -23,25 +23,35 @@ h1 {
 	display: none;
 }
 
-.popUp1, .popUp2, .popUp3, .popUp4 {
-margin: 10px;
+.popUp1, .popUp2, .popUp3, .popUp4, #selectOption {
+	margin: 10px;
+	font-family: 'Arvo', serif;
+	font-size: 15px;
+	background-color: white;
+	border: 1px solid black;
+	padding: 5px;
+}
+
+#selectOption {
+	height: 32px;
 }
 
 #gameWrapper {
 	display: none;
-	margin: 20px auto;
+	margin: 50px auto;
 	height: 200px;
-	width: 600px;
+	width: 800px;
 }
 
-#chosenWord {
-	font-size: 24px;
-	margin: 30px auto;
+#gameBoard {
+	float: left;
+	display: inline-block;
+	width: 600px;
 }
 
 .letters {
 	background-color: white;
-	font-family: monospace;
+	font-family: 'Arvo', serif;;
 	font-size: 16px;
 	height: 35px;
 	width: 35px;
@@ -50,18 +60,30 @@ margin: 10px;
 	outline: 0;
 }
 
+#wordSeed {
+	margin-top: 20px;
+}
+
+#letterSeed {
+	margin-top: 20px;
+}
+
 .letters:hover {
 	border: 2px solid grey;
 }
 
+div[value='/'] { 
+	border: none;
+}
+
 .word {
-	background-color: pink;
-	font-family: monospace;
+	background-color: white;
+	font-family: 'Arvo', serif;;
 	font-size: 24px;
 	height: 30px;
 	width: 35px;
 	border-bottom: 2px solid black;
-	margin: 20px 5px;
+	margin: 0px 5px;
 	outline: 0;
 	display: inline-block;
 }
@@ -69,4 +91,18 @@ margin: 10px;
 #gameStatus {
 	margin: 20px auto;
 	font-size: 40px;
+}
+
+#guessCounter {
+	margin: 20px auto;
+	font-size: 18px;
+}
+
+#animation {
+	border: 2px solid black;
+	width: 140px;
+	height: 250px;
+	margin-right: 20px;
+	float: left;
+	display: inline-block;
 }

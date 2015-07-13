@@ -43,7 +43,7 @@ Hangman.enterWord = function(){
 	Hangman.popUp2Div.show();
 	// User chosen word is stored in a variable and second pop up vanishes
 	$submitButton.on("click", function(){
-		Hangman.input = $('#enterWordInput').val().toLowerCase().replace(/ /g, '-');
+		Hangman.input = $('#enterWordInput').val().toLowerCase().replace(/ /g, '/');
 		Hangman.popUp2Div.hide();
 		Hangman.popUp3Div.show();
 		Hangman.startGame();
@@ -115,15 +115,17 @@ Hangman.initializeWord = function(){
 	$.each(Hangman.inputArray, function(index, value){
 		var $wordSeed = $('<div/>').attr({class:'word', value:value, name:value})
 		$("#wordSeed").append($wordSeed);
+		$(".word[name='/']").html('/').addClass('full');
 	});
 }
 
-// Adds event listeners to the a-z buttons
+// Adds event listeners to the a-z buttons + play game
 Hangman.playGame = function(){
-	var guessCounter = 0;
+	Hangman.guessCounter = 0;
 	var $letterClick = $('.letters');
-	if (guessCounter < 6){
-		$letterClick.on("click", function(){
+	
+	$letterClick.on("click", function(){
+		if (Hangman.guessCounter < 6){
 			if($.inArray($(this).val(), Hangman.inputArray) > -1){
 				$(this).css("background-color", "green");
 				var $selectLetter = $(".word[name='" + $(this).val() + "']");			
@@ -131,14 +133,38 @@ Hangman.playGame = function(){
 				Hangman.checkForWinner();
 			} else {
 				$(this).css("background-color", "red");
-				guessCounter++;
-				console.log(guessCounter);
+				Hangman.guessCounter++;
+				Hangman.changeImage();
 			}
-		});
-	} else {
-		var $gameStatus = $('#gameStatus');
-		$gameStatus.html("Game Over!");
-	}                            
+		} else {
+			var $gameStatus = $('#gameStatus');
+			$gameStatus.html("Game Over!");
+		}
+	});                          
+}
+
+Hangman.changeImage = function(){
+	var $animation = $('#animation');
+	switch (Hangman.guessCounter) {
+		case 1:
+		$animation.css("background-image", "url(./images/test-one.jpg)")
+		break;
+		case 2:
+		$animation.css("background-image", "url(./images/test-two.jpg)")
+		break;
+		case 3:
+		$animation.css("background-image", "url(./images/test-three.jpg)")
+		break;
+		case 4:
+		$animation.css("background-image", "url(./images/test-four.jpg)")
+		break;
+		case 5:
+		$animation.css("background-image", "url(./images/test-five.jpg)")
+		break;
+		case 6:
+		$animation.css("background-image", "url(./images/test-six.jpg)")
+		break;
+	}
 }
 
 // Checks to see if .word divs have a class of 'full' - if yes then declare winner
