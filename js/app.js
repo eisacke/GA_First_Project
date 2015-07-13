@@ -25,6 +25,11 @@ $(document).ready(function(){
 var Hangman = Hangman || {};
 
 Hangman.setup = function(){
+	Hangman.popUp1Div = $('#popUp1');
+	Hangman.popUp2Div = $('#popUp2');
+	Hangman.popUp3Div = $('#popUp3');
+	Hangman.popUp4Div = $('#popUp4');
+
 	var $enterWord = $('#enterWord');
 	var $randomGenerate = $('#randomGenerate');
 	$enterWord.on("click", Hangman.enterWord);
@@ -33,10 +38,6 @@ Hangman.setup = function(){
 
 Hangman.enterWord = function(){
 	// Define pop-ups
-	Hangman.popUp1Div = $('#popUp1');
-	Hangman.popUp2Div = $('#popUp2');
-	Hangman.popUp3Div = $('#popUp3');
-	Hangman.popUp4Div = $('#popUp4');
 	var $submitButton = $('#enterWordSubmit');
 	// Hide first pop-up and reveal second
 	Hangman.popUp1Div.hide();
@@ -66,10 +67,6 @@ Hangman.startGame = function(){
 
 // Generates a random word from an array on click of submit
 Hangman.generateWord = function(){
-	Hangman.popUp1Div = $('#popUp1');
-	Hangman.popUp2Div = $('#popUp2');
-	Hangman.popUp3Div = $('#popUp3');
-	Hangman.popUp4Div = $('#popUp4');
 	Hangman.popUp1Div.hide();
 	Hangman.popUp4Div.show();
 
@@ -91,6 +88,7 @@ Hangman.generateWord = function(){
 			Hangman.input = animalsArray[Math.floor(Math.random() * animalsArray.length)];
 			break;
 		}
+
 		Hangman.popUp3Div.show();
 		Hangman.popUp4Div.hide();
 		Hangman.startGame();
@@ -176,7 +174,7 @@ Hangman.checkForWinner = function(){
 			alert("Reset");
 			Hangman.resetGame();
 		})
-	} 
+	}
 }
 
 Hangman.resetGame = function(){
