@@ -113,7 +113,7 @@ Hangman.initializeBoard = function(){
 Hangman.initializeWord = function(){
 	Hangman.inputArray = Hangman.input.split(''); // Figure out why I have to re-declare this var
 	$.each(Hangman.inputArray, function(index, value){
-		var $wordSeed = $('<div/>').attr({class:'word', value:value}).addClass(value);
+		var $wordSeed = $('<div/>').attr({class:'word', value:value, name:value})
 		$("#wordSeed").append($wordSeed);
 	});
 }
@@ -124,7 +124,7 @@ Hangman.bindEvents = function(){
 	$letterClick.on("click", function(){
 		if($.inArray($(this).val(), Hangman.inputArray) > -1){
 			$(this).css("background-color", "green");
-			var $selectLetter = $('.word'); // Work this out!
+			var $selectLetter = $(".word[name='" + $(this).val() + "']");			
 			$selectLetter.html($(this).val());
 		} else{
 			$(this).css("background-color", "red");
