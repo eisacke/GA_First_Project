@@ -29,6 +29,9 @@ Hangman.setup = function(){
 	Hangman.popUp2Div = $('#popUp2');
 	Hangman.popUp3Div = $('#popUp3');
 	Hangman.popUp4Div = $('#popUp4');
+	Hangman.popUp5Div = $('#popUp5');
+	Hangman.gameWrapper = $('#gameWrapper');
+	Hangman.winOrLose = $('#winOrLose');
 
 	var $enterWord = $('#enterWord');
 	var $randomGenerate = $('#randomGenerate');
@@ -37,12 +40,10 @@ Hangman.setup = function(){
 }
 
 Hangman.enterWord = function(){
-	// Define pop-ups
-	var $submitButton = $('#enterWordSubmit');
-	// Hide first pop-up and reveal second
 	Hangman.popUp1Div.hide();
 	Hangman.popUp2Div.show();
 	// User chosen word is stored in a variable and second pop up vanishes
+	var $submitButton = $('#enterWordSubmit');
 	$submitButton.on("click", function(){
 		Hangman.input = $('#enterWordInput').val().toLowerCase().replace(/ /g, '/');
 		Hangman.popUp2Div.hide();
@@ -56,7 +57,6 @@ Hangman.enterWord = function(){
 //Third and final pop is dismissed and game page is loaded
 Hangman.startGame = function(){
 	var $startGame = $('#startGame');
-	Hangman.gameWrapper = $('#gameWrapper');
 	$startGame.on("click", function(){
 		Hangman.popUp3Div.hide();
 		Hangman.gameWrapper.show();
@@ -73,19 +73,23 @@ Hangman.generateWord = function(){
 	var $randomGenerateSubmit = $('#randomGenerateSubmit');
 	$randomGenerateSubmit.on("click", function(){
 		var $selectOption = $('#selectOption').val();
-		var citiesArray = ['london', 'paris', 'barcelona'];
-		var coloursArray = ['pink', 'purple', 'orange'];
-		var animalsArray = ['tiger', 'monkey', 'penguin'];
+		var GACitiesArray = ['atlanta', 'austin', 'boston', 'chicago', 'hong/kong', 'london', 'los/angeles', 'melbourne', 'new/york/city', 'san/francisco', 'seattle', 'singapore', 'sydney', 'washington/dc'];
+		var starWarsArray = ['darth/vader', 'luke/skywalker', 'leia/organa', 'han/solo', 'yoda', 'obi-wan/kenobi', 'boba/fett', 'chewbacca', 'jabba/the/hutt', 'jar/jar/binks'];
+		var pokemonArray = ['pikachu', 'bulbasaur', 'squirtle', 'rattata', 'clefairy', 'jigglypuff', 'meowth', 'magnemite', 'starmie', 'snorlax', 'mew'];
+		var WD14 = ['andrea', 'franziska', 'gabriele', 'keith', 'marty', 'matt', 'troy', 'alex', 'anvar', 'dami', 'evan', 'francesca', 'hassan', 'jacopo', 'lexie', 'marcus', 'rane', 'sam', 'siavosh']
 
 		switch ($selectOption) {
-			case "cities":
-			Hangman.input = citiesArray[Math.floor(Math.random() * citiesArray.length)];
+			case "GACities":
+			Hangman.input = GACitiesArray[Math.floor(Math.random() * GACitiesArray.length)];
 			break;
-			case "colours":
-			Hangman.input = coloursArray[Math.floor(Math.random() * coloursArray.length)];
+			case "starWars":
+			Hangman.input = starWarsArray[Math.floor(Math.random() * starWarsArray.length)];
 			break;
-			case "animals":
-			Hangman.input = animalsArray[Math.floor(Math.random() * animalsArray.length)];
+			case "pokemon":
+			Hangman.input = pokemonArray[Math.floor(Math.random() * pokemonArray.length)];
+			break;
+			case "WD14":
+			Hangman.input = WD14[Math.floor(Math.random() * WD14.length)];
 			break;
 		}
 
@@ -101,7 +105,7 @@ Hangman.generateWord = function(){
 Hangman.initializeBoard = function(){
 	Hangman.letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
 	$.each(Hangman.letters, function(index, value){
-		var $letterSeed = $('<input/>').attr({type:'button', class:'letters', value:value});
+		var $letterSeed = $('<input/>').attr({type:'button', class:'letters', value:value}).addClass("animated infinite pulse");
 		$("#letterSeed").append($letterSeed);
 	});
 	Hangman.playGame();
@@ -113,6 +117,7 @@ Hangman.initializeWord = function(){
 		var $wordSeed = $('<div/>').attr({class:'word', value:value, name:value})
 		$("#wordSeed").append($wordSeed);
 		$(".word[name='/']").html('/').addClass('full');
+		$(".word[name='-']").html('-').addClass('full');
 	});
 }
 
@@ -133,8 +138,12 @@ Hangman.playGame = function(){
 				Hangman.changeImage();
 			}
 		} else {
-			var $gameStatus = $('#gameStatus');
-			$gameStatus.html("Game Over!");
+			Hangman.winOrLose.html("Game over!");
+			Hangman.popUp5Div.show();
+			var $playAgain = $('#playAgain');
+			$playAgain.on("click", function(){
+				location.reload(); // Hassan told me to do this
+			})
 		}
 	});                          
 }
@@ -166,24 +175,12 @@ Hangman.changeImage = function(){
 // Checks to see if .word divs have a class of 'full' - if yes then declare winner
 Hangman.checkForWinner = function(){
 	if ($(".word.full").length == $(".word").length) {
-		Hangman.popUp5Div = $('#popUp5');
+		Hangman.winOrLose.html("Congratulations! You won!");
 		Hangman.popUp5Div.show();
-		
 		var $playAgain = $('#playAgain');
 		$playAgain.on("click", function(){
-			alert("Reset");
-			Hangman.resetGame();
+			location.reload(); // Hassan told me to do this
 		})
 	}
-}
-
-Hangman.resetGame = function(){
-	Hangman.popUp1Div.show();
-	Hangman.popUp2Div.hide();
-	Hangman.popUp3Div.hide();
-	Hangman.popUp4Div.hide();
-	Hangman.popUp5Div.hide();
-	Hangman.gameWrapper.hide();
-	Hangman.setup();
 }
 
