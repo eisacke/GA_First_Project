@@ -156,6 +156,14 @@ Hangman.playGame = function(){
 		} else {
 			Hangman.winOrLose.html("Game over!");
 			Hangman.popUp5Div.show();
+
+			var sound = soundManager.createSound({ 
+			  id: 'sound_gameOver', 
+			  url: '/sounds/gameOver.mp3', 
+			  volume: 50, 
+			  autoPlay: true 
+			}).play();
+
 			var $playAgain = $('#playAgain');
 			$playAgain.on("click", function(){
 				location.reload(); // Hassan told me to do this
@@ -197,7 +205,7 @@ Hangman.checkForWinner = function(){
 		var sound = soundManager.createSound({ 
 		  id: 'sound_win', 
 		  url: '/sounds/win.mp3', 
-		  volume: 50, 
+		  volume: 25, 
 		  autoPlay: true 
 		}).play();
 
