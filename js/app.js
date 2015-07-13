@@ -107,7 +107,7 @@ Hangman.initializeBoard = function(){
 		var $letterSeed = $('<input/>').attr({type:'button', class:'letters', value:value});
 		$("#letterSeed").append($letterSeed);
 	});
-	Hangman.bindEvents();
+	Hangman.playGame();
 }
 
 Hangman.initializeWord = function(){
@@ -119,7 +119,7 @@ Hangman.initializeWord = function(){
 }
 
 // Adds event listeners to the a-z buttons
-Hangman.bindEvents = function(){
+Hangman.playGame = function(){
 	var guessCounter = 0;
 	var $letterClick = $('.letters');
 	if (guessCounter < 6){
@@ -127,8 +127,8 @@ Hangman.bindEvents = function(){
 			if($.inArray($(this).val(), Hangman.inputArray) > -1){
 				$(this).css("background-color", "green");
 				var $selectLetter = $(".word[name='" + $(this).val() + "']");			
-				$selectLetter.html($(this).val());
-				console.log(guessCounter);
+				$selectLetter.html($(this).val()).addClass("full");
+				Hangman.checkForWinner();
 			} else {
 				$(this).css("background-color", "red");
 				guessCounter++;
@@ -136,9 +136,16 @@ Hangman.bindEvents = function(){
 			}
 		});
 	} else {
-		var $gameOver = $('#gameOver');
-		$gameOver.html("Game Over!");
-	}
+		var $gameStatus = $('#gameStatus');
+		$gameStatus.html("Game Over!");
+	}                            
 }
 
+// Checks to see if .word divs have a class of 'full' - if yes then declare winner
+Hangman.checkForWinner = function(){
+	if ($(".word.full").length == $(".word").length) {
+		var $gameStatus = $('#gameStatus');
+		$gameStatus.html("You won!");
+	} 
+}
 
