@@ -120,16 +120,25 @@ Hangman.initializeWord = function(){
 
 // Adds event listeners to the a-z buttons
 Hangman.bindEvents = function(){
+	var guessCounter = 0;
 	var $letterClick = $('.letters');
-	$letterClick.on("click", function(){
-		if($.inArray($(this).val(), Hangman.inputArray) > -1){
-			$(this).css("background-color", "green");
-			var $selectLetter = $(".word[name='" + $(this).val() + "']");			
-			$selectLetter.html($(this).val());
-		} else{
-			$(this).css("background-color", "red");
-		}
-	});
+	if (guessCounter < 6){
+		$letterClick.on("click", function(){
+			if($.inArray($(this).val(), Hangman.inputArray) > -1){
+				$(this).css("background-color", "green");
+				var $selectLetter = $(".word[name='" + $(this).val() + "']");			
+				$selectLetter.html($(this).val());
+				console.log(guessCounter);
+			} else {
+				$(this).css("background-color", "red");
+				guessCounter++;
+				console.log(guessCounter);
+			}
+		});
+	} else {
+		var $gameOver = $('#gameOver');
+		$gameOver.html("Game Over!");
+	}
 }
 
 
