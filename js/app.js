@@ -114,6 +114,9 @@ Hangman.initializeBoard = function(){
 	$.each(Hangman.letters, function(index, value){
 		var $letterSeed = $('<input/>').attr({type:'button', class:'letters', value:value}).addClass("animated pulse zoomIn");
 		$("#letterSeed").append($letterSeed);
+		$letterSeed.mouseenter(function() {
+			soundCoin();
+		});
 		setTimeout(function() {
 			$letterSeed.removeClass("zoomIn");
 		}, 1000);
@@ -144,7 +147,7 @@ Hangman.playGame = function(){
 				$(this).addClass("correct");
 				var $selectLetter = $(".word[name='" + $(this).val() + "']");			
 				$selectLetter.html($(this).val()).addClass("full");
-				soundCoin();
+				sound1up();
 				Hangman.checkForWinner();
 			} else {
 				Hangman.guessCounter++;

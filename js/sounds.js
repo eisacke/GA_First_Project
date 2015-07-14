@@ -42,3 +42,12 @@ var soundLetters = function(){
 		autoPlay: true 
 	}).play();
 }
+
+var sound1up = function(){
+	var sound = soundManager.createSound({ 
+		id: 'sound_1up', 
+		url: '/sounds/1up.mp3', 
+		volume: 50, 
+		autoPlay: true 
+	}).play();
+}
