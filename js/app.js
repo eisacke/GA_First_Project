@@ -105,7 +105,6 @@ Hangman.startGame = function(){
 
 // Generates the a-z buttons in the DOM
 Hangman.initializeBoard = function(){
-
 	Hangman.letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
 	$.each(Hangman.letters, function(index, value){
 		var $letterSeed = $('<input/>').attr({type:'button', class:'letters', value:value}).addClass("animated pulse zoomIn");
@@ -212,7 +211,6 @@ Hangman.gameOver = function(){
 		Hangman.setup();
 		setTimeout(function(){
 			location.reload()
-		}, 3000);
+		}, 2000);
 	})
 }
-
