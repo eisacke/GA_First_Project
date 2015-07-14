@@ -39,10 +39,10 @@ Hangman.setup = function(){
 	$randomGenerate.on("click", Hangman.generateWord);
 }
 
+// User chosen word is stored in a variable and second pop up vanishes
 Hangman.enterWord = function(){
 	Hangman.popUp1Div.hide();
 	Hangman.popUp2Div.show();
-	// User chosen word is stored in a variable and second pop up vanishes
 	var $submitButton = $('#enterWordSubmit');
 	$submitButton.on("click", function(){
 		Hangman.input = $('#enterWordInput').val().toLowerCase().replace(/ /g, '/');
@@ -69,7 +69,6 @@ Hangman.startGame = function(){
 Hangman.generateWord = function(){
 	Hangman.popUp1Div.hide();
 	Hangman.popUp4Div.show();
-
 	var $randomGenerateSubmit = $('#randomGenerateSubmit');
 	$randomGenerateSubmit.on("click", function(){
 		var $selectOption = $('#selectOption').val();
@@ -119,6 +118,7 @@ Hangman.initializeBoard = function(){
 	Hangman.playGame();
 }
 
+// Loads divs for each letter to be guessed
 Hangman.initializeWord = function(){
 	Hangman.inputArray = Hangman.input.split(''); // Figure out why I have to re-declare this var
 	$.each(Hangman.inputArray, function(index, value){
@@ -131,12 +131,12 @@ Hangman.initializeWord = function(){
 	});
 }
 
-// Adds event listeners to the a-z buttons + play game
+// Adds event listeners to the a-z buttons + main game logic
 Hangman.playGame = function(){
 	Hangman.guessCounter = 0;
 	var $letterClick = $('.letters');
 	$letterClick.on("click", function(){
-		if (Hangman.guessCounter < 8){
+		if (Hangman.guessCounter < 9){
 			if($.inArray($(this).val(), Hangman.inputArray) > -1){
 				$(this).addClass("correct");
 				var $selectLetter = $(".word[name='" + $(this).val() + "']");			
@@ -150,14 +150,10 @@ Hangman.playGame = function(){
 				console.log(Hangman.guessCounter);
 				$(this).addClass("incorrect");
 			}
-		} else {
-			Hangman.reset();
-			soundGameOver();
-			Hangman.winOrLose.html("Game over!");
 		}
 	});                          
 }
-
+// Changes the hangman frame - when guessCounter reaches 8 (max) the gameOver function runs
 Hangman.changeImage = function(){
 	var $animation = $('#animation');
 	switch (Hangman.guessCounter) {
@@ -171,19 +167,27 @@ Hangman.changeImage = function(){
 		$animation.css("background-image", "url(./images/hm3.png)")
 		break;
 		case 4:
-		$animation.css("background-image", "url(./images/hm4.png)")
+		$animation.css("background-image", "url(./images/hm3-5.png)")
 		break;
 		case 5:
-		$animation.css("background-image", "url(./images/hm5.png)")
+		$animation.css("background-image", "url(./images/hm4.png)")
 		break;
 		case 6:
-		$animation.css("background-image", "url(./images/hm6.png)")
+		$animation.css("background-image", "url(./images/hm5.png)")
 		break;
 		case 7:
-		$animation.css("background-image", "url(./images/hm7.png)")
+		$animation.css("background-image", "url(./images/hm6.png)")
 		break;
 		case 8:
-		$animation.css("background-image", "url(./images/hm8.png)")
+		$animation.css("background-image", "url(./images/hm7.png)")
+		break;
+		case 9:
+		$animation.css("background-image", "url(./images/hm8.png)");
+		Hangman.gameOver();
+		soundGameOver();
+		$solution = $('#solution');
+		$solution.html("The correct answer was '" + Hangman.input.replace(/ |\//g," ") +"'!")
+		Hangman.winOrLose.html("Game over!");
 		break;
 	}
 }
@@ -191,13 +195,13 @@ Hangman.changeImage = function(){
 // Checks to see if .word divs have a class of 'full' - if yes then declare winner
 Hangman.checkForWinner = function(){
 	if ($(".word.full").length == $(".word").length) {
-		Hangman.reset();
+		Hangman.gameOver();
 		soundWin();
 		Hangman.winOrLose.html("Congratulations! You won!");
 	}
 }
 
-Hangman.reset = function(){
+Hangman.gameOver = function(){
 	Hangman.popUp5Div.show();
 	var $playAgain = $('#playAgain');
 	$playAgain.on("click", function(){

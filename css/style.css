@@ -123,6 +123,7 @@ button:hover {
 	margin: 0px 5px;
 	outline: 0;
 	display: inline-block;
+	vertical-align: top;
 }
 
 div[value='/'], div[value='-'] { 
