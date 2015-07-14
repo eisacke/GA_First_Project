@@ -51,12 +51,10 @@ Hangman.enterWord = function(){
 		Hangman.popUp2Div.hide();
 		Hangman.popUp3Div.show();
 		Hangman.startGame();
-		setTimeout(Hangman.initializeBoard, 4000);
-		setTimeout(Hangman.initializeWord, 2000);
 	});
 }
 
-// Generates a random word from an array on click of submit
+// Generates a random word from an array on click of submit and saves it in input variable
 Hangman.generateWord = function(){
 	Hangman.popUp1Div.hide();
 	Hangman.popUp4Div.show();
@@ -68,7 +66,6 @@ Hangman.generateWord = function(){
 		var pokemonArray = ['pikachu', 'bulbasaur', 'squirtle', 'rattata', 'clefairy', 'jigglypuff', 'meowth', 'magnemite', 'starmie', 'snorlax', 'mew'];
 		var WD14 = ['andrea', 'franziska', 'gabriele', 'keith', 'marty', 'matt', 'troy', 'alex', 'anvar', 'dami', 'evan', 'francesca', 'hassan', 'jacopo', 'lexie', 'marcus', 'rane', 'sam', 'siavosh']
 		var LOTR = ['frodo/baggins', 'aragorn', 'gandalf', 'legolas', 'bilbo/baggins', 'saruman', 'gollum', 'elrond', 'galadriel', 'boromir', 'peregrin/took', 'gimli', 'faramir', 'radagast']
-
 		switch ($selectOption) {
 			case "GACities":
 			Hangman.input = GACitiesArray[Math.floor(Math.random() * GACitiesArray.length)];
@@ -86,16 +83,13 @@ Hangman.generateWord = function(){
 			Hangman.input = LOTR[Math.floor(Math.random() * LOTR.length)];
 			break;
 		}
-
 		Hangman.popUp3Div.show();
 		Hangman.popUp4Div.hide();
 		Hangman.startGame();
-		setTimeout(Hangman.initializeBoard, 4000);
-		setTimeout(Hangman.initializeWord, 2000)
 	});
 }
 
-//Third and final pop is dismissed and game page is loaded
+//Third and final pop is dismissed and game page is loaded - scroll down to game div
 Hangman.startGame = function(){
 	var $startGame = $('#startGame');
 	$startGame.on("click", function(){
@@ -104,6 +98,8 @@ Hangman.startGame = function(){
 		Hangman.gameWrapper.show();
 		Hangman.inputArray = Hangman.input.split('');
 		console.log(Hangman.inputArray);
+		setTimeout(Hangman.initializeBoard, 4000);
+		setTimeout(Hangman.initializeWord, 2000);
 	});
 }
 
@@ -189,6 +185,7 @@ Hangman.changeImage = function(){
 		break;
 		case 9:
 		$animation.css("background-image", "url(./images/hm8.png)");
+		// Game over if the guessCounter gets to 9
 		Hangman.gameOver();
 		soundGameOver();
 		$solution = $('#solution');
@@ -213,7 +210,9 @@ Hangman.gameOver = function(){
 	$playAgain.on("click", function(){
 		$(document.body).animate({'scrollTop':$('#setup').offset().top}, 1500);
 		Hangman.setup();
-		// location.reload(); // Hassan told me to do this
+		setTimeout(function(){
+			location.reload()
+		}, 3000);
 	})
 }
 
