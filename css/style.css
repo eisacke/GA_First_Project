@@ -168,3 +168,10 @@ div[value='/'], div[value='-'] {
 	margin-top: 25px;
 	margin-bottom: 20px;
 }
+
+footer {
+	background-color: azure;
+	font-size: 12px;
+	color: rgb(52, 52, 52);
+	padding: 10px;
+}
