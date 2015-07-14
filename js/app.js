@@ -135,7 +135,7 @@ Hangman.playGame = function(){
 	Hangman.guessCounter = 0;
 	var $letterClick = $('.letters');
 	$letterClick.on("click", function(){
-		if (Hangman.guessCounter < 6){
+		if (Hangman.guessCounter < 8){
 			if($.inArray($(this).val(), Hangman.inputArray) > -1){
 				$(this).addClass("correct");
 				var $selectLetter = $(".word[name='" + $(this).val() + "']");			
@@ -143,10 +143,11 @@ Hangman.playGame = function(){
 				soundCoin();
 				Hangman.checkForWinner();
 			} else {
-				$(this).addClass("incorrect");
 				Hangman.guessCounter++;
 				Hangman.changeImage();
 				soundFail();
+				console.log(Hangman.guessCounter);
+				$(this).addClass("incorrect");
 			}
 		} else {
 			Hangman.reset();
@@ -160,22 +161,28 @@ Hangman.changeImage = function(){
 	var $animation = $('#animation');
 	switch (Hangman.guessCounter) {
 		case 1:
-		$animation.css("background-image", "url(./images/test-one.jpg)")
+		$animation.css("background-image", "url(./images/hm1.png)")
 		break;
 		case 2:
-		$animation.css("background-image", "url(./images/test-two.jpg)")
+		$animation.css("background-image", "url(./images/hm2.png)")
 		break;
 		case 3:
-		$animation.css("background-image", "url(./images/test-three.jpg)")
+		$animation.css("background-image", "url(./images/hm3.png)")
 		break;
 		case 4:
-		$animation.css("background-image", "url(./images/test-four.jpg)")
+		$animation.css("background-image", "url(./images/hm4.png)")
 		break;
 		case 5:
-		$animation.css("background-image", "url(./images/test-five.jpg)")
+		$animation.css("background-image", "url(./images/hm5.png)")
 		break;
 		case 6:
-		$animation.css("background-image", "url(./images/test-six.jpg)")
+		$animation.css("background-image", "url(./images/hm6.png)")
+		break;
+		case 7:
+		$animation.css("background-image", "url(./images/hm7.png)")
+		break;
+		case 8:
+		$animation.css("background-image", "url(./images/hm8.png)")
 		break;
 	}
 }

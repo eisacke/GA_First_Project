@@ -73,6 +73,11 @@ button:hover {
 	max-width: 790px;
 }
 
+#letterSeed {
+	margin: 20px auto;
+	width: 585px;
+}
+
 .letters {
 	background-color: white;
 	font-family: 'Arvo', serif;
@@ -85,22 +90,27 @@ button:hover {
 	outline: 0;
 }
 
-#wordSeed {
-	margin-top: 20px;
-	/*	line-height: 47px;*/
-}
-
-#letterSeed {
-	margin: 20px auto;
-	width: 585px;
-}
-
 .letters:hover {
 	color: rgb(88, 235, 215);
 }
 
-div[value='/'], div[value='-'] { 
-	border: none;
+.correct {
+	background-color: rgb(88, 235, 215);
+	color: white;
+}
+
+.correct:hover {
+	color: rgb(83, 83, 83);
+}
+
+.incorrect {
+	background-color: rgb(83, 83, 83);
+	color: black;
+}
+
+#wordSeed {
+	margin-top: 20px;
+	/*	line-height: 47px;*/
 }
 
 .word {
@@ -116,31 +126,20 @@ div[value='/'], div[value='-'] {
 	display: inline-block;
 }
 
+div[value='/'], div[value='-'] { 
+	border: none;
+}
+
 #gameStatus {
 	margin: 20px auto;
 	font-size: 40px;
 }
 
-#playerTurn {
-	margin: 20px auto;
-	font-size: 18px;
-}
-
 #animation {
-	border: 2px solid rgb(83, 83, 83);
-	width: 140px;
-	height: 250px;
+	width: 175px;
+	height: 210px;
 	margin-right: 20px;
+	margin-top: 31px;
 	float: left;
 	display: inline-block;
-}
-
-.correct {
-	background-color: rgb(88, 235, 215);
-	color: white;
-}
-
-.incorrect {
-	background-color: rgb(83, 83, 83);
-	color: black;
 }
