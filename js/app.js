@@ -32,8 +32,6 @@ Hangman.setup = function(){
 	Hangman.popUp5Div = $('#popUp5');
 	Hangman.gameWrapper = $('#gameWrapper');
 	Hangman.winOrLose = $('#winOrLose');
-	Hangman.popUp1Div.show();
-	Hangman.popUp3Div.hide();
 
 	var $enterWord = $('#enterWord');
 	var $randomGenerate = $('#randomGenerate');
@@ -60,12 +58,13 @@ Hangman.generateWord = function(){
 	Hangman.popUp4Div.show();
 	var $randomGenerateSubmit = $('#randomGenerateSubmit');
 	$randomGenerateSubmit.on("click", function(){
-		var $selectOption = $('#selectOption').val();
 		var GACitiesArray = ['atlanta', 'austin', 'boston', 'chicago', 'hong/kong', 'london', 'los/angeles', 'melbourne', 'new/york/city', 'san/francisco', 'seattle', 'singapore', 'sydney', 'washington/dc'];
 		var starWarsArray = ['darth/vader', 'luke/skywalker', 'leia/organa', 'han/solo', 'yoda', 'obi-wan/kenobi', 'boba/fett', 'chewbacca', 'jabba/the/hutt', 'jar/jar/binks'];
 		var pokemonArray = ['pikachu', 'bulbasaur', 'squirtle', 'rattata', 'clefairy', 'jigglypuff', 'meowth', 'magnemite', 'starmie', 'snorlax', 'mew'];
 		var WD14 = ['andrea', 'franziska', 'gabriele', 'keith', 'marty', 'matt', 'troy', 'alex', 'anvar', 'dami', 'evan', 'francesca', 'hassan', 'jacopo', 'lexie', 'marcus', 'rane', 'sam', 'siavosh']
 		var LOTR = ['frodo/baggins', 'aragorn', 'gandalf', 'legolas', 'bilbo/baggins', 'saruman', 'gollum', 'elrond', 'galadriel', 'boromir', 'peregrin/took', 'gimli', 'faramir', 'radagast']
+		
+		var $selectOption = $('#selectOption').val();
 		switch ($selectOption) {
 			case "GACities":
 			Hangman.input = GACitiesArray[Math.floor(Math.random() * GACitiesArray.length)];
@@ -97,7 +96,7 @@ Hangman.startGame = function(){
 		soundLetters();
 		Hangman.gameWrapper.show();
 		Hangman.inputArray = Hangman.input.split('');
-		console.log(Hangman.inputArray);
+		console.log(Hangman.input);
 		setTimeout(Hangman.initializeBoard, 4000);
 		setTimeout(Hangman.initializeWord, 2000);
 	});
@@ -208,7 +207,8 @@ Hangman.gameOver = function(){
 	var $playAgain = $('#playAgain');
 	$playAgain.on("click", function(){
 		$(document.body).animate({'scrollTop':$('#setup').offset().top}, 1500);
-		Hangman.setup();
+		Hangman.popUp1Div.show();
+		Hangman.popUp3Div.hide();
 		setTimeout(function(){
 			location.reload()
 		}, 2000);
