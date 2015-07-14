@@ -77,7 +77,7 @@ Hangman.generateWord = function(){
 		var starWarsArray = ['darth/vader', 'luke/skywalker', 'leia/organa', 'han/solo', 'yoda', 'obi-wan/kenobi', 'boba/fett', 'chewbacca', 'jabba/the/hutt', 'jar/jar/binks'];
 		var pokemonArray = ['pikachu', 'bulbasaur', 'squirtle', 'rattata', 'clefairy', 'jigglypuff', 'meowth', 'magnemite', 'starmie', 'snorlax', 'mew'];
 		var WD14 = ['andrea', 'franziska', 'gabriele', 'keith', 'marty', 'matt', 'troy', 'alex', 'anvar', 'dami', 'evan', 'francesca', 'hassan', 'jacopo', 'lexie', 'marcus', 'rane', 'sam', 'siavosh']
-		var LOTR = ['frodo/baggins', 'aragorn', 'gandalf', 'legolas', 'bilbo/baggins', 'saruman', 'gollum', 'elrond', 'galadriel', 'boromir', 'peregrin/took', 'gimli', 'faramir']
+		var LOTR = ['frodo/baggins', 'aragorn', 'gandalf', 'legolas', 'bilbo/baggins', 'saruman', 'gollum', 'elrond', 'galadriel', 'boromir', 'peregrin/took', 'gimli', 'faramir', 'radagast']
 
 		switch ($selectOption) {
 			case "GACities":
@@ -100,7 +100,7 @@ Hangman.generateWord = function(){
 		Hangman.popUp3Div.show();
 		Hangman.popUp4Div.hide();
 		Hangman.startGame();
-		Hangman.initializeBoard();
+		setTimeout(Hangman.initializeBoard, 2500);
 		Hangman.initializeWord();
 	});
 }
@@ -109,10 +109,11 @@ Hangman.generateWord = function(){
 Hangman.initializeBoard = function(){
 	Hangman.letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
 	$.each(Hangman.letters, function(index, value){
-		var $letterSeed = $('<input/>').attr({type:'button', class:'letters', value:value}).addClass("animated zoomIn");
-		setTimeout(function(){
-			$("#letterSeed").append($letterSeed);
-		}, (100*index+1));
+		var $letterSeed = $('<input/>').attr({type:'button', class:'letters', value:value}).addClass("animated pulse zoomIn");
+		$("#letterSeed").append($letterSeed);
+		setTimeout(function() {
+			$letterSeed.removeClass("zoomIn");
+		}, 1000);
 	});
 	Hangman.playGame();
 }
@@ -121,9 +122,11 @@ Hangman.initializeWord = function(){
 	Hangman.inputArray = Hangman.input.split(''); // Figure out why I have to re-declare this var
 	$.each(Hangman.inputArray, function(index, value){
 		var $wordSeed = $('<div/>').attr({class:'word', value:value, name:value});
-		$("#wordSeed").append($wordSeed);
-		$(".word[name='/']").html('/').addClass('full');
-		$(".word[name='-']").html('-').addClass('full');
+		setTimeout(function(){
+			$("#wordSeed").append($wordSeed);
+			$(".word[name='/']").html('/').addClass('full');
+			$(".word[name='-']").html('-').addClass('full');
+		}, (150*index+1));
 	});
 }
 
@@ -134,13 +137,13 @@ Hangman.playGame = function(){
 	$letterClick.on("click", function(){
 		if (Hangman.guessCounter < 6){
 			if($.inArray($(this).val(), Hangman.inputArray) > -1){
-				$(this).css("background-color", "rgb(155, 235, 31)");
+				$(this).addClass("correct");
 				var $selectLetter = $(".word[name='" + $(this).val() + "']");			
 				$selectLetter.html($(this).val()).addClass("full");
 				soundCoin();
 				Hangman.checkForWinner();
 			} else {
-				$(this).css("background-color", "rgb(255, 29, 74)");
+				$(this).addClass("incorrect");
 				Hangman.guessCounter++;
 				Hangman.changeImage();
 				soundFail();

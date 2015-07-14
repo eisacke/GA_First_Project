@@ -1,11 +1,14 @@
 body {
 	font-family: 'Arvo', serif;
-	background-color: white;
+	background-color: azure;
 	text-align: center;
+	padding: 10px;
+	color: rgb(52, 52, 52);
 }
 
 h1 {
 	text-align: center;
+	color: rgb(52, 52, 52);
 	margin-bottom: 40px;
 	font-size: 40px;
 }
@@ -16,8 +19,8 @@ h2 {
 }
 
 #popUp1, #popUp2, #popUp3, #popUp4 {
-	background: whitesmoke;
-	border: 2px solid black;
+	background: ghostwhite;
+	border: 2px solid rgb(83, 83, 83);
 	width: 340px;
 	margin: 100px auto;
 	padding: 20px;
@@ -25,8 +28,8 @@ h2 {
 }
 
 #popUp5 {
-	background: whitesmoke;
-	border: 2px solid black;
+	background: ghostwhite;
+	border: 2px solid rgb(83, 83, 83);
 	width: 340px;
 	margin: 40px auto;
 	padding: 20px;
@@ -40,14 +43,16 @@ h2 {
 .popUp1, .popUp2, .popUp3, .popUp4, .popUp5, #selectOption {
 	margin: 10px 5px 0px 5px;
 	font-family: 'Arvo', serif;
+	color: rgb(52, 52, 52);
 	font-size: 15px;
 	background-color: white;
-	border: 2px solid black;
+	border: 2px solid rgb(83, 83, 83);
 	padding: 5px;
+	outline: 0;
 }
 
 button:hover {
-	border: 2px solid grey;
+	border: 2px solid rgb(88, 235, 215);
 }
 
 #selectOption {
@@ -70,18 +75,19 @@ button:hover {
 
 .letters {
 	background-color: white;
-	font-family: 'Arvo', serif;;
+	font-family: 'Arvo', serif;
+	color: rgb(10, 145, 142);
 	font-size: 16px;
 	height: 35px;
 	width: 35px;
-	border: 2px solid black;
+	border: 2px solid rgb(83, 83, 83);
 	margin: 5px;
 	outline: 0;
 }
 
 #wordSeed {
 	margin-top: 20px;
-/*	line-height: 47px;*/
+	/*	line-height: 47px;*/
 }
 
 #letterSeed {
@@ -90,7 +96,7 @@ button:hover {
 }
 
 .letters:hover {
-	border: 2px solid grey;
+	color: rgb(88, 235, 215);
 }
 
 div[value='/'], div[value='-'] { 
@@ -98,12 +104,13 @@ div[value='/'], div[value='-'] {
 }
 
 .word {
-	background-color: white;
-	font-family: 'Arvo', serif;;
+	background-color: azure;
+	font-family: 'Arvo', serif;
+	color: rgb(83, 83, 83);
 	font-size: 24px;
 	height: 30px;
 	width: 35px;
-	border-bottom: 2px solid black;
+	border-bottom: 2px solid rgb(83, 83, 83);
 	margin: 0px 5px;
 	outline: 0;
 	display: inline-block;
@@ -120,10 +127,20 @@ div[value='/'], div[value='-'] {
 }
 
 #animation {
-	border: 2px solid black;
+	border: 2px solid rgb(83, 83, 83);
 	width: 140px;
 	height: 250px;
 	margin-right: 20px;
 	float: left;
 	display: inline-block;
+}
+
+.correct {
+	background-color: rgb(88, 235, 215);
+	color: white;
+}
+
+.incorrect {
+	background-color: rgb(83, 83, 83);
+	color: black;
 }
