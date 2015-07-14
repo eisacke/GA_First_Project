@@ -1,1 +1,5 @@
-# GA_First_Project
+# Hangman
+
+#### First project for GA WDI London 2015
+
+

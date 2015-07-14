@@ -1,21 +1,15 @@
 // When page loads, the user needs to choose whether to input their own word, or get a generated word
 // If input own word, input option is available with submit button
 // Input saved in an array
-// Give option 1 or 2 players
-// If 2 players then ask for names/team names
 // Once all player info is taken, load main page
 // Load the word, in hangman form (_ _ / _ _ etc.)
 // Load the letters a-z (maybe as buttons?)
 // Once clicked, the a-z button checks against the letters in the array
 // If true, the letter becomes visable, and the button disappears(blacked out)
-// It is still player 1's go
 // If false, the 'hangman' part is drawn, and the button disappears(blacked out)
-// If false, it is player 2's go
-// The player can guess the word by typing in a box at any point - but only on their go
-// If correct - declare winner
-// If incorrect - next person's go
+// If correct - declare game won
+// If incorrect - play again until max guesses (9)
 // If total hangman is drawn - game over - restart
-// Player 1 or player 2 score taken (this might be complicated, with player 1/2 toggle)
 // Back to menu page
 
 $(document).ready(function(){
@@ -32,7 +26,7 @@ Hangman.setup = function(){
 	Hangman.popUp5Div = $('#popUp5');
 	Hangman.gameWrapper = $('#gameWrapper');
 	Hangman.winOrLose = $('#winOrLose');
-
+	// Event listeners are added to first two buttons
 	var $enterWord = $('#enterWord');
 	var $randomGenerate = $('#randomGenerate');
 	$enterWord.on("click", Hangman.enterWord);
@@ -63,7 +57,7 @@ Hangman.generateWord = function(){
 		var pokemonArray = ['pikachu', 'bulbasaur', 'squirtle', 'rattata', 'clefairy', 'jigglypuff', 'meowth', 'magnemite', 'starmie', 'snorlax', 'mew'];
 		var WD14 = ['andrea', 'franziska', 'gabriele', 'keith', 'marty', 'matt', 'troy', 'alex', 'anvar', 'dami', 'evan', 'francesca', 'hassan', 'jacopo', 'lexie', 'marcus', 'rane', 'sam', 'siavosh']
 		var LOTR = ['frodo/baggins', 'aragorn', 'gandalf', 'legolas', 'bilbo/baggins', 'saruman', 'gollum', 'elrond', 'galadriel', 'boromir', 'peregrin/took', 'gimli', 'faramir', 'radagast']
-		
+		// Picks from array based on player category selection
 		var $selectOption = $('#selectOption').val();
 		switch ($selectOption) {
 			case "GACities":
@@ -153,6 +147,7 @@ Hangman.playGame = function(){
 		}
 	});                          
 }
+
 // Changes the hangman frame - when guessCounter reaches 8 (max) the gameOver function runs
 Hangman.changeImage = function(){
 	var $animation = $('#animation');
