@@ -29,7 +29,16 @@ var soundWin = function(){
 	var sound = soundManager.createSound({ 
 		id: 'sound_win', 
 		url: '/sounds/win.mp3', 
-		volume: 25, 
+		volume: 50, 
+		autoPlay: true 
+	}).play();
+}
+
+var soundLetters = function(){
+	var sound = soundManager.createSound({ 
+		id: 'sound_letters', 
+		url: '/sounds/lettersLoad.mp3', 
+		volume: 50, 
 		autoPlay: true 
 	}).play();
 }

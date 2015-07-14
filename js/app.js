@@ -111,6 +111,7 @@ Hangman.initializeBoard = function(){
 	$.each(Hangman.letters, function(index, value){
 		var $letterSeed = $('<input/>').attr({type:'button', class:'letters', value:value}).addClass("animated pulse zoomIn");
 		$("#letterSeed").append($letterSeed);
+		soundLetters();
 		setTimeout(function() {
 			$letterSeed.removeClass("zoomIn");
 		}, 1000);
