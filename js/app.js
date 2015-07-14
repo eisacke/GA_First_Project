@@ -107,11 +107,11 @@ Hangman.generateWord = function(){
 
 // Generates the a-z buttons in the DOM
 Hangman.initializeBoard = function(){
+	soundLetters();
 	Hangman.letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
 	$.each(Hangman.letters, function(index, value){
 		var $letterSeed = $('<input/>').attr({type:'button', class:'letters', value:value}).addClass("animated pulse zoomIn");
 		$("#letterSeed").append($letterSeed);
-		soundLetters();
 		setTimeout(function() {
 			$letterSeed.removeClass("zoomIn");
 		}, 1000);

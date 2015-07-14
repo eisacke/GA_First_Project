@@ -22,7 +22,7 @@ h2 {
 	background: ghostwhite;
 	border: 2px solid rgb(83, 83, 83);
 	width: 340px;
-	margin: 100px auto;
+	margin: 200px auto;
 	padding: 20px;
 	text-align: center;
 }
@@ -31,7 +31,7 @@ h2 {
 	background: ghostwhite;
 	border: 2px solid rgb(83, 83, 83);
 	width: 340px;
-	margin: 40px auto;
+	margin: 30px auto;
 	padding: 20px;
 	text-align: center;
 }
@@ -61,14 +61,13 @@ button:hover {
 
 #gameWrapper {
 	display: none;
-	margin: 100px auto;
+	margin: 0 auto;
 	height: 200px;
 	width: 960px;
 }
 
 #gameBoard {
-	float: left;
-	display: inline-block;
+	margin: 0 auto;
 	min-width: 700px;
 	max-width: 790px;
 }
@@ -109,7 +108,7 @@ button:hover {
 }
 
 #wordSeed {
-	margin-top: 20px;
+	margin-top: 30px auto;
 	/*	line-height: 47px;*/
 }
 
@@ -138,8 +137,8 @@ div[value='/'], div[value='-'] {
 #animation {
 	width: 175px;
 	height: 210px;
-	margin-right: 20px;
-	margin-top: 31px;
-	float: left;
-	display: inline-block;
+	display: block;
+	margin: 0 auto;
+	margin-top: 10px;
+	margin-bottom: 20px;
 }
