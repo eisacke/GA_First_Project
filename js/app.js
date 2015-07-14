@@ -202,6 +202,7 @@ Hangman.checkForWinner = function(){
 	}
 }
 
+// Sets event listener on play again button, and scrolls back up to the top
 Hangman.gameOver = function(){
 	Hangman.popUp5Div.show();
 	var $playAgain = $('#playAgain');
@@ -210,7 +211,7 @@ Hangman.gameOver = function(){
 		Hangman.popUp1Div.show();
 		Hangman.popUp3Div.hide();
 		setTimeout(function(){
-			location.reload()
+			location.reload() // Hassan told me to do this!
 		}, 2000);
 	})
 }
