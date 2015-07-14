@@ -32,6 +32,8 @@ Hangman.setup = function(){
 	Hangman.popUp5Div = $('#popUp5');
 	Hangman.gameWrapper = $('#gameWrapper');
 	Hangman.winOrLose = $('#winOrLose');
+	Hangman.popUp1Div.show();
+	Hangman.popUp3Div.hide();
 
 	var $enterWord = $('#enterWord');
 	var $randomGenerate = $('#randomGenerate');
@@ -49,19 +51,8 @@ Hangman.enterWord = function(){
 		Hangman.popUp2Div.hide();
 		Hangman.popUp3Div.show();
 		Hangman.startGame();
-		Hangman.initializeBoard();
-		Hangman.initializeWord();
-	});
-}
-
-//Third and final pop is dismissed and game page is loaded
-Hangman.startGame = function(){
-	var $startGame = $('#startGame');
-	$startGame.on("click", function(){
-		Hangman.popUp3Div.hide();
-		Hangman.gameWrapper.show();
-		Hangman.inputArray = Hangman.input.split('');
-		console.log(Hangman.inputArray);
+		setTimeout(Hangman.initializeBoard, 4000);
+		setTimeout(Hangman.initializeWord, 2000);
 	});
 }
 
@@ -99,14 +90,26 @@ Hangman.generateWord = function(){
 		Hangman.popUp3Div.show();
 		Hangman.popUp4Div.hide();
 		Hangman.startGame();
-		setTimeout(Hangman.initializeBoard, 2500);
-		Hangman.initializeWord();
+		setTimeout(Hangman.initializeBoard, 4000);
+		setTimeout(Hangman.initializeWord, 2000)
+	});
+}
+
+//Third and final pop is dismissed and game page is loaded
+Hangman.startGame = function(){
+	var $startGame = $('#startGame');
+	$startGame.on("click", function(){
+		$(document.body).animate({'scrollTop':$('#game').offset().top}, 1500);
+		soundLetters();
+		Hangman.gameWrapper.show();
+		Hangman.inputArray = Hangman.input.split('');
+		console.log(Hangman.inputArray);
 	});
 }
 
 // Generates the a-z buttons in the DOM
 Hangman.initializeBoard = function(){
-	soundLetters();
+
 	Hangman.letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
 	$.each(Hangman.letters, function(index, value){
 		var $letterSeed = $('<input/>').attr({type:'button', class:'letters', value:value}).addClass("animated pulse zoomIn");
@@ -205,7 +208,9 @@ Hangman.gameOver = function(){
 	Hangman.popUp5Div.show();
 	var $playAgain = $('#playAgain');
 	$playAgain.on("click", function(){
-		location.reload(); // Hassan told me to do this
+		$(document.body).animate({'scrollTop':$('#setup').offset().top}, 1500);
+		Hangman.setup();
+		// location.reload(); // Hassan told me to do this
 	})
 }
 

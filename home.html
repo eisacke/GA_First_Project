@@ -13,45 +13,49 @@
 	<script src="./js/soundmanager2.js"></script>
 </head>
 <body>
-	<div id="popUp1">
-		<h2>Let's play Hangman!</h2>
-		<p>Would you like to choose your own word, or randomly generate one?</p>
-		<button class="popUp1" id="enterWord">Enter own word</button>
-		<button class="popUp1" id="randomGenerate">Randomly generate</button>
-	</div>
-	<div id="popUp2">
-		<p>Enter your word and press submit</p>
-		<input type="password" class="popUp2" id="enterWordInput" name="password">
-		<button class="popUp2" id="enterWordSubmit">Submit</button>
-	</div>
-	<div id="popUp3">
-		<p>All set!</p>
-		<button class="popUp3" id="startGame">Start the game!</button>
-	</div>
-	<div id="popUp4">
-		<p>Select your category!</p>
-		<select id="selectOption">
-			<option value= "starWars">Star Wars</option>
-			<option value= "pokemon">Pokemon</option>
-			<option value= "LOTR">LOTR</option>
-			<option value= "GACities">GA Cities</option>
-			<option value= "WD14">WD14 Names</option>
-		</select>
-		<button class="popUp4" id="randomGenerateSubmit">Submit</button>
-	</div>
-	<div id="gameWrapper">
-		<div id="animation">
+	<div id="setup">
+		<div id="popUp1">
+			<h2>Let's play Hangman!</h2>
+			<p>Would you like to choose your own word, or randomly generate one?</p>
+			<button class="popUp1" id="enterWord">Enter own word</button>
+			<button class="popUp1" id="randomGenerate">Randomly generate</button>
 		</div>
-		<div id="gameBoard">
-			<h1>Let's play Hangman!</h1>
-			<div id="wordSeed"></div>
-			<div id="letterSeed"></div>
-			<div id="playerTurn"></div>
-			<div id="gameStatus"></div>
-			<div id="popUp5">
-				<h2 id="winOrLose"></h2>
-				<p id="solution"></p>
-				<button class="popUp5" id="playAgain">Play again?</button>
+		<div id="popUp2">
+			<p>Enter your word and press submit</p>
+			<input type="password" class="popUp2" id="enterWordInput" name="password">
+			<button class="popUp2" id="enterWordSubmit">Submit</button>
+		</div>
+		<div id="popUp3">
+			<p>All set!</p>
+			<button class="popUp3" id="startGame">Start the game!</button>
+		</div>
+		<div id="popUp4">
+			<p>Select your category!</p>
+			<select id="selectOption">
+				<option value= "starWars">Star Wars</option>
+				<option value= "pokemon">Pokemon</option>
+				<option value= "LOTR">LOTR</option>
+				<option value= "GACities">GA Cities</option>
+				<option value= "WD14">WD14 Names</option>
+			</select>
+			<button class="popUp4" id="randomGenerateSubmit">Submit</button>
+		</div>
+	</div>
+	<div id="game">
+		<div id="gameWrapper">
+			<div id="animation">
+			</div>
+			<div id="gameBoard">
+				<h1>Let's play Hangman!</h1>
+				<div id="wordSeed"></div>
+				<div id="letterSeed"></div>
+				<div id="playerTurn"></div>
+				<div id="gameStatus"></div>
+				<div id="popUp5">
+					<h2 id="winOrLose"></h2>
+					<p id="solution"></p>
+					<button class="popUp5" id="playAgain">Play again?</button>
+				</div>
 			</div>
 		</div>
 	</div>
