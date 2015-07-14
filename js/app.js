@@ -131,39 +131,18 @@ Hangman.playGame = function(){
 				$(this).css("background-color", "rgb(155, 235, 31)");
 				var $selectLetter = $(".word[name='" + $(this).val() + "']");			
 				$selectLetter.html($(this).val()).addClass("full");
-
-				var sound = soundManager.createSound({ 
-				  id: 'sound_coin', 
-				  url: '/sounds/coin.mp3', 
-				  volume: 50, 
-				  autoPlay: true 
-				}).play();
-
+				soundCoin();
 				Hangman.checkForWinner();
 			} else {
 				$(this).css("background-color", "rgb(255, 29, 74)");
 				Hangman.guessCounter++;
 				Hangman.changeImage();
-
-				var sound = soundManager.createSound({ 
-				  id: 'sound_fail', 
-				  url: '/sounds/fail.mp3', 
-				  volume: 50, 
-				  autoPlay: true 
-				}).play();
-
+				soundFail();
 			}
 		} else {
 			Hangman.winOrLose.html("Game over!");
 			Hangman.popUp5Div.show();
-
-			var sound = soundManager.createSound({ 
-			  id: 'sound_gameOver', 
-			  url: '/sounds/gameOver.mp3', 
-			  volume: 50, 
-			  autoPlay: true 
-			}).play();
-
+			soundGameOver();
 			var $playAgain = $('#playAgain');
 			$playAgain.on("click", function(){
 				location.reload(); // Hassan told me to do this
@@ -201,14 +180,7 @@ Hangman.checkForWinner = function(){
 	if ($(".word.full").length == $(".word").length) {
 		Hangman.winOrLose.html("Congratulations! You won!");
 		Hangman.popUp5Div.show();
-
-		var sound = soundManager.createSound({ 
-		  id: 'sound_win', 
-		  url: '/sounds/win.mp3', 
-		  volume: 25, 
-		  autoPlay: true 
-		}).play();
-
+		soundWin();
 		var $playAgain = $('#playAgain');
 		$playAgain.on("click", function(){
 			location.reload(); // Hassan told me to do this
