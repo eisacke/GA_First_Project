@@ -77,6 +77,7 @@ Hangman.generateWord = function(){
 		var starWarsArray = ['darth/vader', 'luke/skywalker', 'leia/organa', 'han/solo', 'yoda', 'obi-wan/kenobi', 'boba/fett', 'chewbacca', 'jabba/the/hutt', 'jar/jar/binks'];
 		var pokemonArray = ['pikachu', 'bulbasaur', 'squirtle', 'rattata', 'clefairy', 'jigglypuff', 'meowth', 'magnemite', 'starmie', 'snorlax', 'mew'];
 		var WD14 = ['andrea', 'franziska', 'gabriele', 'keith', 'marty', 'matt', 'troy', 'alex', 'anvar', 'dami', 'evan', 'francesca', 'hassan', 'jacopo', 'lexie', 'marcus', 'rane', 'sam', 'siavosh']
+		var LOTR = ['frodo/baggins', 'aragorn', 'gandalf', 'legolas', 'bilbo/baggins', 'saruman', 'gollum', 'elrond', 'galadriel', 'boromir', 'peregrin/took', 'gimli', 'faramir']
 
 		switch ($selectOption) {
 			case "GACities":
@@ -90,6 +91,9 @@ Hangman.generateWord = function(){
 			break;
 			case "WD14":
 			Hangman.input = WD14[Math.floor(Math.random() * WD14.length)];
+			break;
+			case "LOTR":
+			Hangman.input = LOTR[Math.floor(Math.random() * LOTR.length)];
 			break;
 		}
 
@@ -106,7 +110,9 @@ Hangman.initializeBoard = function(){
 	Hangman.letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
 	$.each(Hangman.letters, function(index, value){
 		var $letterSeed = $('<input/>').attr({type:'button', class:'letters', value:value}).addClass("animated zoomIn");
-		$("#letterSeed").append($letterSeed);
+		setTimeout(function(){
+			$("#letterSeed").append($letterSeed);
+		}, (100*index+1));
 	});
 	Hangman.playGame();
 }
@@ -140,13 +146,9 @@ Hangman.playGame = function(){
 				soundFail();
 			}
 		} else {
-			Hangman.winOrLose.html("Game over!");
-			Hangman.popUp5Div.show();
+			Hangman.reset();
 			soundGameOver();
-			var $playAgain = $('#playAgain');
-			$playAgain.on("click", function(){
-				location.reload(); // Hassan told me to do this
-			})
+			Hangman.winOrLose.html("Game over!");
 		}
 	});                          
 }
@@ -178,13 +180,17 @@ Hangman.changeImage = function(){
 // Checks to see if .word divs have a class of 'full' - if yes then declare winner
 Hangman.checkForWinner = function(){
 	if ($(".word.full").length == $(".word").length) {
-		Hangman.winOrLose.html("Congratulations! You won!");
-		Hangman.popUp5Div.show();
+		Hangman.reset();
 		soundWin();
-		var $playAgain = $('#playAgain');
-		$playAgain.on("click", function(){
-			location.reload(); // Hassan told me to do this
-		})
+		Hangman.winOrLose.html("Congratulations! You won!");
 	}
+}
+
+Hangman.reset = function(){
+	Hangman.popUp5Div.show();
+	var $playAgain = $('#playAgain');
+	$playAgain.on("click", function(){
+		location.reload(); // Hassan told me to do this
+	})
 }
 
