@@ -1,4 +1,6 @@
-# Hangman - WDI Project 1
+# Hangman
+
+###GA WDI London - Project 1
 
 #### The classic Hangman game!
 
