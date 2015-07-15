@@ -19,13 +19,13 @@ $(document).ready(function(){
 var Hangman = Hangman || {};
 
 Hangman.setup = function(){
-	Hangman.popUp1Div = $('#popUp1');
-	Hangman.popUp2Div = $('#popUp2');
-	Hangman.popUp3Div = $('#popUp3');
-	Hangman.popUp4Div = $('#popUp4');
-	Hangman.popUp5Div = $('#popUp5');
-	Hangman.gameWrapper = $('#gameWrapper');
-	Hangman.winOrLose = $('#winOrLose');
+	this.popUp1Div = $('#popUp1');
+	this.popUp2Div = $('#popUp2');
+	this.popUp3Div = $('#popUp3');
+	this.popUp4Div = $('#popUp4');
+	this.popUp5Div = $('#popUp5');
+	this.gameWrapper = $('#gameWrapper');
+	this.winOrLose = $('#winOrLose');
 	// Event listeners are added to first two buttons
 	var $enterWord = $('#enterWord');
 	var $randomGenerate = $('#randomGenerate');
