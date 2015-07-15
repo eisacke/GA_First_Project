@@ -19,8 +19,7 @@ This version of Hangman has two game options:
 2. If the letter is in the word one or more times, it will appear in it's correct location within the word
 3. If a guess is incorrect, the letter will be blacked out, and one part of the hangman will be drawn
 4. If the word is correctly guessed before the hangman is completely drawn, you win! 
-5. If the hangman is completely drawn (after 9 incorrect guesses) it's game over!
-6. Press *Play Again?* to return to the welcome screen.
+5. If the hangman is completely drawn (after 9 incorrect guesses) it's Game Over!
 
 ![](./images/Hangman2.jpg)
 
