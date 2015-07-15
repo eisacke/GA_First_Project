@@ -10,7 +10,7 @@ This version of Hangman has two game options:
 #####[Play it here!](https://stormy-inlet-8683.herokuapp.com/ "Here!")
 
 
-![](/Users/emilyisacke/DWI/first-project/images/Hangman1.jpg)
+![](./images/Hangman1.jpg)
 
 
 #####Rules
@@ -22,7 +22,7 @@ This version of Hangman has two game options:
 5. If the hangman is completely drawn (after 9 incorrect guesses) it's game over!
 6. Press *Play Again?* to return to the welcome screen.
 
-![](/Users/emilyisacke/DWI/first-project/images/Hangman2.jpg)
+![](./images/Hangman2.jpg)
 
 ####Approach / How it works
 
@@ -46,7 +46,7 @@ There are sounds that are triggered upon:
 * Soundmanager was used to load the sounds. 
 * The Google Web Font 'Arvo' has been used to style the game.
 
-![](/Users/emilyisacke/DWI/first-project/images/Hangman3.jpg)
+![](./images/Hangman3.jpg)
 
 
 #### Problems & Challenges
