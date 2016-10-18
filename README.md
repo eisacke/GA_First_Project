@@ -9,7 +9,7 @@ This version of Hangman has two game options:
 1. Play with a friend, where one of you enters a word and the other guesses 
 2. Select a category from a dropdown list and the computer will randomly generate a word for you to guess
 
-#####[Play it here!](https://stormy-inlet-8683.herokuapp.com/ "Here!")
+#####[Play it here!](https://hangman-wdi-one.herokuapp.com/ "Here!")
 
 
 ![](./images/Hangman1.jpg)
