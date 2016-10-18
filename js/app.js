@@ -37,15 +37,12 @@ const Hangman = {
 		this.popUp1Div.hide();
 		this.popUp2Div.show();
 		const $submitButton = $('#enterWordSubmit');
-		$submitButton.on("click", this.addWord.bind(this));
-	},
-
-	addWord() {
-		this.input = $('#enterWordInput').val().toLowerCase().replace(/ /g, '/');
-		this.popUp2Div.hide();
-		this.popUp3Div.show();
-		this.startGame();
-		console.log(this);
+		$submitButton.on("click", ()=> {
+			this.input = $('#enterWordInput').val().toLowerCase().replace(/ /g, '/');
+			this.popUp2Div.hide();
+			this.popUp3Div.show();
+			this.startGame();
+		});
 	},
 
 	// Generates a random word from an array on click of submit and saves it in input variable
@@ -88,11 +85,11 @@ const Hangman = {
 
 
 	//Third and final pop is dismissed and game page is loaded - scroll down to game div
-	startGame() { console.log('inside startGame');
+	startGame() {
 		const $startGame = $('#startGame');
 		$startGame.on("click", () => {
 			$(document.body).animate({'scrollTop':$('#game').offset().top}, 1500);
-			// soundLetters();
+			soundLetters();
 			Hangman.gameWrapper.show();
 			Hangman.inputArray = Hangman.input.split('');
 			setTimeout(() => {
@@ -111,7 +108,7 @@ const Hangman = {
 			let $letterSeed = $('<input/>').attr({type:'button', class:'letters', value:value}).addClass("animated pulse zoomIn");
 			$("#letterSeed").append($letterSeed);
 			$letterSeed.mouseenter(function() {
-				// soundCoin();
+				soundCoin();
 			});
 			setTimeout(function() {
 				$letterSeed.removeClass("zoomIn");
@@ -144,12 +141,12 @@ const Hangman = {
 					$clicked.addClass("correct");
 					let $selectLetter = $(".word[name='" + $clicked.val() + "']");
 					$selectLetter.html($clicked.val()).addClass("full");
-					// sound1up();
+					sound1up();
 					this.checkForWinner();
 				} else {
 					this.guessCounter++;
 					this.changeImage();
-					// soundFail();
+					soundFail();
 					$clicked.addClass("incorrect");
 				}
 			}
@@ -188,7 +185,7 @@ const Hangman = {
 			$animation.css("background-image", "url(./images/hm8.png)");
 			// Game over if the guessCounter gets to 9
 			this.gameOver();
-			// soundGameOver();
+			soundGameOver();
 			$solution = $('#solution');
 			$solution.html("The correct answer was '" + this.input.replace(/ |\//g," ") +"'!");
 			this.winOrLose.html("Game over!");
@@ -200,7 +197,7 @@ const Hangman = {
 	checkForWinner() {
 		if ($(".word.full").length == $(".word").length) {
 			this.gameOver();
-			// soundWin();
+			soundWin();
 			this.winOrLose.html("Congratulations! You won!");
 		}
 	},
