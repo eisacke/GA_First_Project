@@ -52,9 +52,7 @@ There are sounds that are triggered upon:
 
 #### Problems & Challenges
 
-The main challenge I faced building this game, was how to link the user guesses with the revealing of correct letters. I needed to select the correct letter div that had the same name or value as the guessed letter. I am pleased with the solution that I came up with. The other challenge I had was how to centre the pop-ups vertically within the setup div, which I eventually achieved using 
-positioning and percentages. 
-
+The main challenge I faced building this game, was how to link the user guesses with the revealing of correct letters. I needed to select the correct letter div that had the same name or value as the guessed letter. I am pleased with the solution that I came up with. The other challenge I had was how to centre the pop-ups vertically within the setup div, which I eventually achieved using positioning and percentages. 
 
 
 
