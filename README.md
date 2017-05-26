@@ -1,6 +1,6 @@
 # Hangman
 
-###GA WDI London - Project 1
+### GA WDI London - Project 1
 
 #### The classic Hangman game!
 
@@ -9,13 +9,13 @@ This version of Hangman has two game options:
 1. Play with a friend, where one of you enters a word and the other guesses 
 2. Select a category from a dropdown list and the computer will randomly generate a word for you to guess
 
-#####[Play it here!](https://hangman-wdi-one.herokuapp.com/ "Here!")
+##### [Play it here!](https://hangman-wdi-one.herokuapp.com/ "Here!")
 
 
 ![](./images/Hangman1.jpg)
 
 
-#####Rules
+##### Rules
 
 1. Guess a letter by clicking on it
 2. If the letter is in the word one or more times, it will appear in it's correct location within the word
@@ -25,7 +25,7 @@ This version of Hangman has two game options:
 
 ![](./images/Hangman2.jpg)
 
-####Approach / How it works
+#### Approach / How it works
 
 If the user chooses to input their own word, it is stored in the 'input' variable. The spaces are converted to '/' and the capital letters to lower case. If the user chooses to generate a word, it is randomly picked from an array based on their chosen category, and saved in the 'input' variable. This variable is then split into an array to seperate the letters and symbols.
 
@@ -40,7 +40,7 @@ There are sounds that are triggered upon:
 5. Letter rollover
 6. Start of the game
 
-####The build
+#### The build
 
 * HTML 5, CSS and jQuery were used to create this game. 
 * Animation was created using the Animate.css stylesheet. 
