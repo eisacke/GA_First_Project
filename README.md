@@ -27,7 +27,7 @@ This version of Hangman has two game options:
 
 #### Approach / How it works
 
-If the user chooses to input their own word, it is stored in the 'input' variable. The spaces are converted to '/' and the capital letters to lower case. If the user chooses to generate a word, it is randomly picked from an array based on their chosen category, and saved in the 'input' variable. This variable is then split into an array to seperate the letters and symbols.
+If the user chooses to input their own word, the spaces are converted to '/' and the capital letters to lower case. If the user chooses to generate  a word, it is randomly picked from an array based on their chosen category. The word is then split into an array to seperate the letters and symbols.
 
 The letters and hidden word are created dynamically, and once a letter selection is made it is determined whether or not the guess is correct. If a guess is correct, the letter or letters will appear. If a guess is incorrect, one part of the hangman is drawn. If 9 incorrect guesses are made, it is Game Over!
 
